@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start" style="color: white;">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center" color="secondary" style="font-weight: bold;">Product Search</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-searchbar mode="ios" animated debounce="500" type="text" style="margin-top: 10px;" (ionClear)="clearsearch()" (keyup)="getItems($event)"></ion-searchbar>
+
+<ion-grid *ngIf="this.SearchProductListResult==[] ||this.SearchProductListResult=='' ||this.SearchProductListResult==null|| this.SearchProductListResult=='null'" style="position: relative;top: 10%;">
+  <div style="text-align: center;">
+    <img style="width: 50%;" src="../../../assets/images/NO ITEM.png">
+    <h2 style="font-weight: bold;">No items found</h2>
+  </div>
+
+</ion-grid>
+
+<ion-grid  style="position: relative;top: 10%;">
+  <ion-row>
+    <ion-col size="12" *ngFor="let products of SearchProductListResult">
+      <div style="border: 1px solid #d3d0d3; border-radius: 5px;" >
+        <img onerror="this.src='https://www.manchesterdirect.com.au/assets/themes/QCS_D/img/default_product.gif?1618385796'" src="{{products.imageurl}}" style="height: 150px;width: 100%;object-fit: cover;">
+        
+          <div style="background-color: #dbb8d8;padding: 5px;height: 130px;object-fit: cover;">
+            <ion-row class="ion-text-center">
+              <ion-col size="12" style="color: black;font-weight: bold;"><ion-icon class="ion-margin-end" name="business-outline" style="font-size: x-large;font-weight: bold;"></ion-icon>{{products.building}}</ion-col>
+            </ion-row>
+            <ion-row class="ion-text-center">
+              <ion-col  size="12" style="color: black;font-weight: bold;"><ion-icon class="ion-margin-end" name="location-outline" style="font-size: large;font-weight: bold;"></ion-icon>{{products.city}}</ion-col>
+            </ion-row>
+            <ion-row class="ion-text-center">
+              <ion-col  size="12" style="color: black;font-weight: bold;"><ion-icon class="ion-margin-end" name="call-outline" style="font-size: large;font-weight: bold;"></ion-icon>{{products.phon}}</ion-col>
+            </ion-row>
+          </div>
+        
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

@@ -1,0 +1,26 @@
+<ion-item button *ngIf="!isSelect " (click)="viewMainCat(1)" style="font-weight: bold;">
+  <h1 style="font-weight: bold;margin-left: auto;margin-right: auto;color: #42153d;">Ratings</h1>
+  <ion-icon slot="end" name="add-outline"></ion-icon>
+</ion-item>
+<ion-item button *ngIf="isSelect" (click)="viewMainCat(2)" style="font-weight: bold;">
+  <h1 style="font-weight: bold;margin-left: auto;margin-right: auto;color: #42153d;">Ratings</h1>
+  <ion-icon slot="end" name="remove-outline"></ion-icon>
+</ion-item>
+
+<div>
+  <div *ngIf="!isSelect"></div>
+  <div *ngIf="isSelect" class="ion-margin-start">
+    <ion-item  >
+      <ion-list>
+        <ion-item lines="none" *ngFor="let entry of form">
+          <ion-label>{{entry.val}}</ion-label>
+          <ion-checkbox slot="end" (click)="setValue(entry.val)" ></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </ion-item>
+    <ion-row class="ion-text-end" ><ion-col>
+      <ion-button color="secondary" (click)="apply()">Apply</ion-button>
+    </ion-col></ion-row>
+   
+  </div>
+</div>
